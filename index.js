@@ -6,7 +6,7 @@ const path = require("path");
 const db = require("./config/db");
 
 // importar modelo
-const Proyectos = require("./models/Proyectos");
+require("./models/Proyectos");
 
 db.sync()
   .then(() => console.log("conectado al servidor"))
