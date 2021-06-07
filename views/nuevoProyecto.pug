@@ -7,9 +7,7 @@ block contenido
         h1 #{nombrePagina}
 
         //- pre= vardump(proyecto)
-
         if errores
             each error in errores
-                .alerta.error= error.texto
+                .alerta= error.texto
         +crearProyecto(proyecto)
-

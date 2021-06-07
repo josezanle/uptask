@@ -43,6 +43,7 @@ exports.nuevoProyecto = async (req, res) => {
     errores.push({ texto: "Agrega un nombre al proyecto" });
   }
 
+  // si hay errores
   if (errores.length > 0) {
     res.render("nuevoProyecto", {
       nombrePagina: "Nuevo Proyecto",
