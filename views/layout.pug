@@ -21,13 +21,11 @@ body
             .panel.lista-proyectos
               h2 proyectos
               ul#proyectos.proyectos
-                li
-                  a(href="#") Diseño de Tienda virtual i
-                li
-                  a(href="#") Diseño de Tienda virtual
-                li
-                  a(href="#") Diseño de Tienda virtual
+               if(proyectos)
+                  each proyecto in proyectos
+                    li
+                      a(href=`/proyectos/${proyecto.url}`)= proyecto.nombre
 
         block contenido
-
+        //- pre= vardump(proyectos)
 

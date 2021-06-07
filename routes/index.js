@@ -5,9 +5,12 @@ const {
   nosotros,
   formularioProyecto,
   nuevoProyecto,
+  proyectoPorUrl,
+  formularioEditar,
+  actualizarProyecto,
 } = require("../controllers/proyectosController");
 
-const { body } = require("express-validator/check");
+const { body } = require("express-validator");
 
 module.exports = function () {
   // ruta para el home
@@ -21,6 +24,19 @@ module.exports = function () {
     "/nuevo-proyecto",
     body("nombre").not().isEmpty().trim().escape(),
     nuevoProyecto
+  );
+
+  // ruta para traer un proyecto por id
+  router.get("/proyectos/:url", proyectoPorUrl);
+
+  // ruta para actualizar un proyecto
+  router.get("/proyecto/editar/:id", formularioEditar);
+
+  // ruta para postear proyecto
+  router.post(
+    "/nuevo-proyecto/:id",
+    body("nombre").not().isEmpty().trim().escape(),
+    actualizarProyecto
   );
 
   return router;

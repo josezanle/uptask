@@ -9,11 +9,12 @@ html {
 body {
   font-family: "Lato", sans-serif;
   min-height: 100vh;
+  background: #ebebeb;
 }
 /** Login **/
 .login,
 .crear-cuenta {
-  background: #455a64;
+  background: #48b697;
 }
 .contenedor-formulario {
   display: flex;
@@ -36,7 +37,7 @@ body {
 }
 .caja-login {
   background-color: #f2f2f2;
-  border: 1px solid #707070;
+  border: 1px solid #48b697;
   max-width: 650px;
   width: 90%;
   margin: 0 auto;
@@ -74,7 +75,7 @@ body {
   justify-content: flex-end;
 }
 .boton {
-  background-color: #fdd835;
+  background-color: #f8a228;
   text-align: center;
   transition: background-color 0.5s ease-in-out;
   padding: 2rem;
@@ -96,12 +97,12 @@ body {
 
 .boton:hover {
   cursor: pointer;
-  background-color: rgb(219, 184, 29) !important;
+  opacity: 0.8;
 }
 .boton.eliminar {
   margin-top: 1rem;
   float: right;
-  background-color: red !important;
+  background-color: #dd242f !important;
   color: white;
 }
 .campo a {
@@ -114,7 +115,7 @@ body.index {
   height: 100vh;
 }
 .barra {
-  background-color: #455a64;
+  background-color: #48b697;
   padding: 1rem;
   height: 60px;
   display: flex;
@@ -248,12 +249,12 @@ body.index {
   text-transform: uppercase;
 }
 .error {
-  color: red !important;
+  color: #dd242f !important;
   background-color: rgb(255, 201, 201);
-  border: 1px solid red;
+  border: 1px solid #dd242f;
 }
 .error p {
-  color: red !important;
+  color: #dd242f !important;
 }
 .correcto {
   color: green;
