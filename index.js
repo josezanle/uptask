@@ -19,7 +19,7 @@ db.sync()
   .catch((error) => console.log(error));
 
 // parseo de la data
-app.use(express.urlencoded());
+app.use(express.json());
 
 //public
 app.use(express.static("public"));

@@ -1,5 +1,4 @@
 const Proyectos = require("../models/Proyectos");
-const slug = require("slug");
 
 // Traer todos los registros
 exports.proyectosHome = async (req, res) => {
@@ -53,7 +52,7 @@ exports.nuevoProyecto = async (req, res) => {
   } else {
     // no hay errores
     // insertar en la bd
-    const url = slug(nombre).toLowerCase();
+
     await Proyectos.create({ nombre, url });
     res.redirect("/");
   }
@@ -130,7 +129,6 @@ exports.actualizarProyecto = async (req, res) => {
   } else {
     // no hay errores
     // insertar en la bd
-    const url = slug(nombre).toLowerCase();
     await Proyectos.update(
       { nombre: nombre },
       { where: { id: req.params.id } }
