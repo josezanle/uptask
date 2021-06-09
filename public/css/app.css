@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;1,300;1,400&display=swap");
+
 html {
   box-sizing: border-box;
 }
@@ -9,6 +11,7 @@ html {
 body {
   min-height: 100vh;
   background: #ebebeb;
+  font-family: "ubuntu";
 }
 /** Login **/
 .login,

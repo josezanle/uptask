@@ -2,13 +2,15 @@ const express = require("express");
 const router = express.Router();
 const {
   proyectosHome,
-  nosotros,
   formularioProyecto,
   nuevoProyecto,
   proyectoPorUrl,
   formularioEditar,
   actualizarProyecto,
+  eliminarProyecto,
 } = require("../controllers/proyectosController");
+
+const tareasController = require("../controllers/tareasController");
 
 const { body } = require("express-validator");
 
@@ -26,7 +28,7 @@ module.exports = function () {
     nuevoProyecto
   );
 
-  // ruta para traer un proyecto por id
+  // ruta para traer un proyecto por url
   router.get("/proyectos/:url", proyectoPorUrl);
 
   // ruta para actualizar un proyecto
@@ -39,5 +41,10 @@ module.exports = function () {
     actualizarProyecto
   );
 
+  // eliminar proyecto
+  router.delete("/proyectos/:url", eliminarProyecto);
+
+  // post de tareas
+  router.post("/proyectos/:url", tareasController.agregarTarea);
   return router;
 };

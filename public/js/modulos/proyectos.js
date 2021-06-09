@@ -4,7 +4,9 @@ import axios from "axios";
 const btnEliminar = document.querySelector("#eliminar-proyecto");
 
 if (btnEliminar) {
-  btnEliminar.addEventListener("click", () => {
+  btnEliminar.addEventListener("click", (e) => {
+    const urlProyecto = e.target.dataset.proyectoUrl;
+
     Swal.fire({
       title: "Deseas borrar este proyecto?",
       text: "No podras recuperarlo si lo borras",
@@ -16,23 +18,35 @@ if (btnEliminar) {
       cancelButtonText: "No, Cancelar.",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          "Proyecto Eliminado",
-          "Su proyecto se ha eliminado",
-          "success"
-        );
+        // enviar peticion axios
+        const url = `${location.origin}/proyectos/${urlProyecto}`;
 
-        //   redirect home
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 3000);
+        axios
+          .delete(url, { params: { urlProyecto } })
+          .then(function (respuesta) {
+            console.log(respuesta);
+
+            Swal.fire(
+              "Proyecto Eliminado",
+              "Su proyecto se ha eliminado",
+              "success"
+            );
+
+            //   redirect home
+            setTimeout(() => {
+              window.location.href = "/";
+            }, 3000);
+          })
+          .catch(() => {
+            Swal.fire({
+              type: "error",
+              title: "Hubo un error",
+              text: "No se pudo eliminar el proyecto",
+            });
+          });
       }
     });
   });
 }
-
-// red: #dd242f
-// amarillo: #f8a228
-// gree: #48b697
 
 export default btnEliminar;
