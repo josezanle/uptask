@@ -16,15 +16,15 @@ body
     main.contenedor
         aside.contenedor-proyectos
             .panel.crear-proyecto
-              a(href="/nuevo-proyecto" class="boton")  Nuevo
-                span +
+                a(href="/nuevo-proyecto" class="boton")  Nuevo
+                    span +
             .panel.lista-proyectos
-              h2 proyectos
-              ul#proyectos.proyectos
-               if(proyectos)
-                  each proyecto in proyectos
-                    li
-                      a(href=`/proyectos/${proyecto.url}`)= proyecto.nombre
+                h2 proyectos
+                ul#proyectos.proyectos
+                    if(proyectos.length)
+                        each proyecto in proyectos
+                            li
+                              a(href=`/proyectos/${proyecto.url}`)= proyecto.nombre
 
         block contenido
         //- pre= vardump(proyectos)

@@ -18,37 +18,18 @@ exports.proyectosHome = async (req, res) => {
 // ====================================================================================
 
 exports.formularioProyecto = async (req, res) => {
-  const id = req.params.id;
+  
+  const proyectos = await Proyectos.findAll();
 
-  // esta retornando undefined
-  console.log(id);
-  try {
-    const proyectosPromise = Proyectos.findAll();
-    const proyectoPromise = Proyectos.findOne({
-      where: {
-        id: id,
-      },
-    });
-
-    const [proyectos, proyecto] = await Promise.all([
-      proyectosPromise,
-      proyectoPromise,
-    ]);
-
-    res.render("nuevoProyecto", {
-      nombrePagina: "Nuevo Proyecto",
-      proyectos,
-      proyecto,
-    });
-  } catch (error) {
-    console.log(error);
-    throw new Error("error en formulario proyecto");
-  }
+  res.render('nuevoProyecto', {
+      nombrePagina: 'Nuevo Proyecto',
+      proyectos
+  })
 };
 // ====================================================================================
 // Crear un nuevo Proyecto
 exports.nuevoProyecto = async (req, res) => {
-  const nombre = req.body.nombre;
+  const {nombre,url} = req.body;
   try {
     const proyectos = await Proyectos.findAll();
     let errores = [];
