@@ -5,9 +5,6 @@ const path = require("path");
 // helpers con algunas funciones
 const helpers = require("./helpers");
 
-// init del server
-const app = express();
-
 // crear conexion db
 const db = require("./config/db");
 
@@ -19,8 +16,8 @@ db.sync()
   .then(() => console.log("conectado al servidor"))
   .catch((error) => console.log(error));
 
-// parseo de la data
-app.use(express.urlencoded({ extended: true }));
+// init del server
+const app = express();
 
 //public
 app.use(express.static("public"));
@@ -30,6 +27,9 @@ app.set("view engine", "pug");
 
 // añadir vistas
 app.set("views", path.join(__dirname, "./views"));
+
+// parseo de la data
+app.use(express.urlencoded({ extended: true }));
 
 // Pasar var dump a la aplicación
 app.use((req, res, next) => {
