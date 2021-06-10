@@ -23,3 +23,34 @@ exports.agregarTarea = async (req, res, next) => {
 
   res.redirect(`/proyectos/${req.params.url}`);
 };
+
+// =====================================================================
+
+exports.cambiarEstadoTarea = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const tarea = await Tareas.findOne({ where: { id } });
+
+    // cambiar estado
+    let estado = 0;
+    if (tarea.estado === estado) {
+      estado = 1;
+    }
+    tarea.estado = estado;
+
+    const resultado = await tarea.save();
+    if (!resultado) return next();
+
+    res.status(200).send("Actualizado");
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error en el controlador: cambiarEstadoTarea");
+  }
+};
+
+// =====================================================================
+
+exports.eliminarTarea = async (req, res) => {
+  res.send("eliminando");
+};

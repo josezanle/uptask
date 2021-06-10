@@ -14,9 +14,9 @@ block contenido
         .listado-pendientes
             ul
                 if tareas.length
-                    each tarea in tareas 
-                        li.tarea
-                            p=tarea.tarea
+                    each tarea in tareas
+                        li.tarea(data-tarea=tarea.id)
+                            p= tarea.tarea
                             .acciones
                                 if tarea.estado
                                     i.far.fa-check-circle.completo
