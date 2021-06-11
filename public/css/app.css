@@ -211,7 +211,7 @@ body.index {
 
 /** Listado Pendientes **/
 .listado-pendientes {
-  background-color: #f2f2f2;
+  background-color: white;
   max-width: 800px;
   width: 90%;
   margin: 2rem auto 0 auto;

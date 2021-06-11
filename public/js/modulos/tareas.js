@@ -1,5 +1,6 @@
 import axios from "axios";
 import Swal from "sweetalert2";
+import { actualizarAvance } from "../funciones/avance";
 
 const tareas = document.querySelector(".listado-pendientes");
 
@@ -12,8 +13,15 @@ if (tareas) {
       //   location.origin = sirve para mostrar la url actual,local o deploy
       const url = `${location.origin}/tareas/${idTarea}`;
 
-      axios.patch(url, { idTarea }).then(function (respuesta) {
+      axios.patch(url, { idTarea })
+      .then(function (respuesta) {
         console.log(respuesta);
+
+        if(respuesta.status === 200 ){
+          icono.classList.toggle('completo')
+
+          actualizarAvance()
+        }
       });
     }
     if (e.target.classList.contains("fa-trash")) {
@@ -34,8 +42,26 @@ if (tareas) {
         if (result.isConfirmed) {
           const url = `${location.origin}/tareas/${idTarea}`;
 
-          axios.delete(url, { params: { idTarea } }).then(function (respuesta) {
-            console.log(respuesta);
+          axios.delete(url, { params: { idTarea } })
+          .then(function (respuesta) {
+            if(respuesta.status === 200){
+
+              console.log(respuesta)
+              // eliminar el nodo
+              tareaHTML.parentElement.removeChild(tareaHTML)
+
+              // mostrar una alerta
+              Swal.fire(
+                'Ups! parece que algo se borro.',
+                respuesta.data,
+                'success'
+              )
+
+              actualizarAvance()
+            }
+            
+            
+            
           });
         }
       });
