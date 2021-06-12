@@ -13,6 +13,7 @@ const {
 const tareasController = require("../controllers/tareasController");
 
 const { body } = require("express-validator");
+const { formCrearCuenta, crearCuenta } = require("../controllers/usuariosController");
 
 module.exports = function () {
   // ruta para el home
@@ -44,6 +45,8 @@ module.exports = function () {
   // eliminar proyecto
   router.delete("/proyectos/:url", eliminarProyecto);
 
+  // =========================================================
+
   // post de tareas
   router.post("/proyectos/:url", tareasController.agregarTarea);
 
@@ -53,5 +56,10 @@ module.exports = function () {
   // eliminar una tarea
   router.delete("/tareas/:id", tareasController.eliminarTarea);
 
+  // ============================================================
+  // crear una nueva cuenta
+  router.get('/crear-cuenta', formCrearCuenta)
+
+  router.post('/crear-cuenta', crearCuenta)
   return router;
 };
