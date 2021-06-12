@@ -13,7 +13,13 @@ const {
 const tareasController = require("../controllers/tareasController");
 
 const { body } = require("express-validator");
-const { formCrearCuenta, crearCuenta } = require("../controllers/usuariosController");
+
+const {
+  formCrearCuenta,
+  crearCuenta,
+  formIniciarSesion,
+} = require("../controllers/usuariosController");
+const { autenticarUsuario } = require("../controllers/authController");
 
 module.exports = function () {
   // ruta para el home
@@ -58,8 +64,12 @@ module.exports = function () {
 
   // ============================================================
   // crear una nueva cuenta
-  router.get('/crear-cuenta', formCrearCuenta)
+  router.get("/crear-cuenta", formCrearCuenta);
 
-  router.post('/crear-cuenta', crearCuenta)
+  router.post("/crear-cuenta", crearCuenta);
+
+  // iniciar session
+  router.get("/iniciar-sesion", formIniciarSesion);
+  router.post("/iniciar-session", autenticarUsuario);
   return router;
 };

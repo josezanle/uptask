@@ -1,10 +1,10 @@
 const express = require("express");
 const routes = require("./routes");
 const path = require("path");
-const flash = require('connect-flash')
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
-// const passport = require('./config/passport');
+const flash = require("connect-flash");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const passport = require("./config/passport");
 
 // helpers con algunas funciones
 const helpers = require("./helpers");
@@ -36,17 +36,22 @@ app.set("view engine", "pug");
 // añadir vistas
 app.set("views", path.join(__dirname, "./views"));
 
-// flash messages
-app.use(flash())
-
 app.use(cookieParser());
 
 // sessiones nos permiten navegar entre distintas paginas sin volvernos a autenticar
-app.use(session({ 
-  secret: "keyboard cat", 
-  resave: false, 
-  saveUninitialized: false 
-}));
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// flash messages
+app.use(flash());
 
 // Pasar var dump a la aplicación
 app.use((req, res, next) => {
