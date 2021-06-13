@@ -22,7 +22,7 @@ exports.crearCuenta = async (req, res) => {
 
   try {
     // crear y enviar ala bd
-    await sUsuarios.create({
+    await Usuarios.create({
       email,
       password,
     });
@@ -40,3 +40,5 @@ exports.crearCuenta = async (req, res) => {
       });
   }
 };
+
+
