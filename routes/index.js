@@ -20,6 +20,7 @@ const {
   crearCuenta,
   formIniciarSesion,
   formRestablecerPassword,
+  confirmarCuenta,
 } = require("../controllers/usuariosController");
 const { autenticarUsuario, usuarioAutenticado, enviarToken, validarToken, actualizarPassword } = require("../controllers/authController");
 
@@ -86,6 +87,7 @@ module.exports = function () {
   // crear una nueva cuenta
   router.get("/crear-cuenta", formCrearCuenta);
   router.post("/crear-cuenta", crearCuenta);
+  router.get('/confirmar/:correo',confirmarCuenta);
 
   // iniciar session
   router.get("/iniciar-sesion", formIniciarSesion);
