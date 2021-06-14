@@ -22,7 +22,7 @@ const {
   formRestablecerPassword,
   confirmarCuenta,
 } = require("../controllers/usuariosController");
-const { autenticarUsuario, usuarioAutenticado, enviarToken, validarToken, actualizarPassword } = require("../controllers/authController");
+const { autenticarUsuario, usuarioAutenticado, enviarToken, validarToken, actualizarPassword, cerrarSesion } = require("../controllers/authController");
 
 module.exports = function () {
   // ruta para el home
@@ -94,7 +94,7 @@ module.exports = function () {
   router.post("/iniciar-sesion", autenticarUsuario);
 
   // cerrar sesion
-  router.get('/cerrar-sesion',)
+  router.get('/cerrar-sesion', cerrarSesion)
 
     // reestablecer contraseña
     router.get('/reestablecer',formRestablecerPassword);
