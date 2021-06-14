@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../config/db");
-const Proyectos = require("./Proyectos");
+const Proyectos = require("../models/Proyectos");
 const bcrypt = require("bcrypt-nodejs");
 
 const Usuarios = db.define(
@@ -14,7 +14,7 @@ const Usuarios = db.define(
     email: {
       type: Sequelize.STRING(60),
       allowNull: false,
-      validated: {
+      validate: {
         isEmail: {
           msg: "Agrega un correo valido",
         },
@@ -24,18 +24,24 @@ const Usuarios = db.define(
       },
       unique: {
         args: true,
-        msg: "Usuario ya regitrado",
+        msg: "Usuario ya registrado",
       },
     },
     password: {
       type: Sequelize.STRING(60),
       allowNull: false,
-      validated: {
+      validate: {
         notEmpty: {
           msg: "El Password no puede ir vacio",
         },
       },
     },
+    activo:{
+      type: Sequelize.STRING,
+      defaultValue: 0
+    },
+    token: Sequelize.STRING,
+    expiracion: Sequelize.DATE
   },
   {
     hooks: {

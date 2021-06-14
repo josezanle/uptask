@@ -12,14 +12,16 @@ const {
 
 const tareasController = require("../controllers/tareasController");
 
-const { body } = require("express-validator");
+// importar express validator
+const { body } = require('express-validator/check');
 
 const {
   formCrearCuenta,
   crearCuenta,
   formIniciarSesion,
+  formRestablecerPassword,
 } = require("../controllers/usuariosController");
-const { autenticarUsuario, usuarioAutenticado } = require("../controllers/authController");
+const { autenticarUsuario, usuarioAutenticado, enviarToken, validarToken, actualizarPassword } = require("../controllers/authController");
 
 module.exports = function () {
   // ruta para el home
@@ -87,10 +89,16 @@ module.exports = function () {
 
   // iniciar session
   router.get("/iniciar-sesion", formIniciarSesion);
-  router.post("/iniciar-session", autenticarUsuario);
+  router.post("/iniciar-sesion", autenticarUsuario);
 
   // cerrar sesion
   router.get('/cerrar-sesion',)
+
+    // reestablecer contraseña
+    router.get('/reestablecer',formRestablecerPassword);
+    router.post('/reestablecer', enviarToken);
+    router.get('/reestablecer/:token', validarToken);
+    router.post('/reestablecer/:token', actualizarPassword);
   
   return router;
 };

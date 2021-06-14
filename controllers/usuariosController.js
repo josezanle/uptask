@@ -2,7 +2,7 @@ const Usuarios = require("../models/Usuarios");
 
 exports.formCrearCuenta = (req, res) => {
   res.render("crearCuenta", {
-    nombrePagina: " Crear cuenta en Uptask",
+    nombrePagina: "Crear cuenta en Uptask",
   });
 };
 
@@ -10,7 +10,7 @@ exports.formCrearCuenta = (req, res) => {
 exports.formIniciarSesion = (req, res) => {
   const { error } = res.locals.mensajes;
   res.render("iniciarSesion", {
-    nombrePagina: " iniciar Sesion en Uptask",
+    nombrePagina: "Iniciar Sesion en Uptask",
     error,
   });
 };
@@ -26,7 +26,6 @@ exports.crearCuenta = async (req, res) => {
       email,
       password,
     });
-    res.redirect("/iniciar-sesion");
   } catch (error) {
     req.flash(
       "error",
@@ -34,11 +33,17 @@ exports.crearCuenta = async (req, res) => {
     ),
       res.render("crearCuenta", {
         mensajes: req.flash(),
-        nombrePagina: " Crear cuenta en Uptask",
+        nombrePagina: "Crear cuenta en Uptask",
         email,
         password,
       });
   }
 };
+// ========================================================
 
+exports.formRestablecerPassword = (req, res) => {
+  res.render('reestablecer',{
+    nombrePagina:'Reestablecer tu contraseña'
+  })
+}
 
