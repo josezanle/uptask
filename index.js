@@ -63,9 +63,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// seteamos el puerto
-const port = process.env.PORT || 4000;
-
 // rutas
 app.use("/", routes());
 
